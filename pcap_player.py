@@ -3,9 +3,9 @@
 
 from scapy.all import *
 import argparse
-import sys
 
 # User modifiable variables
+source_pcap_directory = "."
 source_pcap_file = "infile.pcap"
 
 parser = argparse.ArgumentParser()
@@ -13,7 +13,7 @@ parser.add_argument(
     "-i",
     "--infile",
     help="Path and filename of source pcap file to play.",
-    default=source_pcap_file,
+    default=os.path.join(source_pcap_directory, source_pcap_file),
 )
 parser.add_argument(
     "-v",
