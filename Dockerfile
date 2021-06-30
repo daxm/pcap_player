@@ -1,17 +1,15 @@
 FROM python:3
 
-ENV WORK_DIR /
-WORKDIR $WORK_DIR
+ARG workdir=/app
 
-ENV PCAP_DIR $WORK_DIR/pcap
-ENV PCAP_FILE test.pcap
+RUN mkdir $workdir
 
-RUN mkdir -p $WORK_DIR
-COPY bootstrap.py $WORK_DIR
+WORKDIR $workdir
 
-RUN mkdir -p $PCAP_DIR
-COPY $PCAP_FILE $PCAP_DIR
+ADD pcap_player.py .
+ADD requirements.txt .
 
-RUN pip install scapy
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "sh", "-c", "python bootstrap.py ${PCAP_DIR}/${PCAP_FILE}" ]
+ENTRYPOINT ["python", "pcap_player.py"]
