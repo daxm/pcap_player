@@ -10,7 +10,7 @@ The result will be to *play* the infile.pcap contents onto the network.
 
 ##  Docker how to use
 1. ```docker pull dmickels/pcap_player:latest```
-1. ```docker run --rm --net=host -v "$(pwd)":"/app" dmickels/pcap_player -h```
+1. ```docker run --rm --net=host -v "<path and filename to pcap>":"/app/infile.pcap" dmickels/pcap_player```
     * This shows you all the arguments you can pass.  Remove the "-h" and add any options you want.
     * The defaults will expect an "infile.pcap" for the filename of the PCAP file.
 
